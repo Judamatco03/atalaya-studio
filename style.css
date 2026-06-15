@@ -782,3 +782,322 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   13. UNIDAD 2 — Nuevos módulos integrados al sistema de diseño
+   Variables CSS del proyecto usadas en todos los estilos nuevos
+   ============================================================ */
+
+
+/* ============================================================
+   13.1 MODO CLARO — toggle desde oscuro (base) a claro
+   El sitio es oscuro por defecto; el modo claro es el "toggle"
+   ============================================================ */
+:root {
+  --color-fondo-claro:      #f5f5f5;
+  --color-superficie-claro: #ffffff;
+  --color-borde-claro:      #e0e0e0;
+  --color-texto-claro:      #111111;
+  --color-texto-suave-claro:#555555;
+}
+
+body.modo-claro {
+  background-color: var(--color-fondo-claro);
+  color: var(--color-texto-claro);
+}
+
+body.modo-claro .site-header {
+  background-color: rgba(245, 245, 245, 0.92);
+  border-bottom-color: var(--color-borde-claro);
+}
+
+body.modo-claro .logo {
+  color: var(--color-texto-claro);
+}
+
+body.modo-claro .nav-menu a {
+  color: var(--color-texto-suave-claro);
+}
+
+body.modo-claro .nav-menu a:hover,
+body.modo-claro .nav-menu a:focus-visible {
+  color: var(--color-acento-hover);
+}
+
+body.modo-claro .hero {
+  background-color: var(--color-fondo-claro);
+}
+
+body.modo-claro .hero h1,
+body.modo-claro .hero p {
+  color: var(--color-texto-claro);
+}
+
+body.modo-claro .servicios {
+  background-color: var(--color-superficie-claro);
+}
+
+body.modo-claro .section-title {
+  color: var(--color-texto-claro);
+}
+
+body.modo-claro .section-descripcion {
+  color: var(--color-texto-suave-claro);
+}
+
+body.modo-claro .servicio-card {
+  background-color: var(--color-fondo-claro);
+  border-color: var(--color-borde-claro);
+}
+
+body.modo-claro .servicio-card h3 {
+  color: var(--color-texto-claro);
+}
+
+body.modo-claro .servicio-card p {
+  color: var(--color-texto-suave-claro);
+}
+
+body.modo-claro .testimonios {
+  background-color: var(--color-fondo-claro);
+}
+
+body.modo-claro .testimonio-card {
+  background-color: var(--color-superficie-claro);
+  border-color: var(--color-borde-claro);
+}
+
+body.modo-claro .testimonio-texto {
+  color: var(--color-texto-suave-claro);
+}
+
+body.modo-claro .testimonio-nombre {
+  color: var(--color-texto-claro);
+}
+
+body.modo-claro .contacto {
+  background-color: var(--color-superficie-claro);
+}
+
+body.modo-claro .contacto-texto p {
+  color: var(--color-texto-suave-claro);
+}
+
+body.modo-claro .campo label {
+  color: var(--color-texto-claro);
+}
+
+body.modo-claro .campo input,
+body.modo-claro .campo textarea {
+  background-color: var(--color-fondo-claro);
+  color: var(--color-texto-claro);
+  border-color: var(--color-borde-claro);
+}
+
+body.modo-claro .campo input:focus,
+body.modo-claro .campo textarea:focus {
+  border-color: var(--color-acento-hover);
+  box-shadow: 0 0 0 3px rgba(189, 230, 0, 0.2);
+}
+
+body.modo-claro .site-footer {
+  background-color: var(--color-fondo-claro);
+  border-top-color: var(--color-borde-claro);
+}
+
+body.modo-claro .footer-logo,
+body.modo-claro .footer-copy {
+  color: var(--color-texto-claro);
+}
+
+body.modo-claro .footer-links a {
+  color: var(--color-texto-suave-claro);
+}
+
+body.modo-claro .menu-toggle {
+  border-color: var(--color-borde-claro);
+  color: var(--color-texto-claro);
+}
+
+body.modo-claro .hamburger,
+body.modo-claro .hamburger::before,
+body.modo-claro .hamburger::after {
+  background-color: var(--color-texto-claro);
+}
+
+/* Transición suave entre temas */
+body,
+body * {
+  transition:
+    background-color var(--transicion-normal),
+    color var(--transicion-normal),
+    border-color var(--transicion-normal);
+}
+
+/* Excepción: las transiciones de transform y box-shadow no deben verse afectadas */
+.btn,
+.servicio-card,
+.testimonio-card,
+.campo input,
+.campo textarea {
+  transition:
+    background-color var(--transicion-normal),
+    color var(--transicion-normal),
+    border-color var(--transicion-normal),
+    transform var(--transicion-normal),
+    box-shadow var(--transicion-normal);
+}
+
+
+/* ============================================================
+   13.2 BOTÓN DE CAMBIO DE TEMA — integrado al header existente
+   ============================================================ */
+.btn-tema {
+  background: transparent;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-full);
+  padding: var(--espacio-sm) var(--espacio-md);
+  font-family: var(--fuente-cuerpo);
+  font-size: var(--texto-xs);
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--color-texto-suave);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition:
+    border-color var(--transicion-rapida),
+    color var(--transicion-rapida),
+    background-color var(--transicion-rapida);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-tema:hover {
+  border-color: var(--color-acento);
+  color: var(--color-acento);
+}
+
+body.modo-claro .btn-tema {
+  border-color: var(--color-borde-claro);
+  color: var(--color-texto-suave-claro);
+}
+
+body.modo-claro .btn-tema:hover {
+  border-color: var(--color-acento-hover);
+  color: var(--color-acento-hover);
+}
+
+
+/* ============================================================
+   13.3 BANNER DE BIENVENIDA — LocalStorage saludo personalizado
+   ============================================================ */
+.banner-bienvenida {
+  background-color: rgba(212, 255, 0, 0.06);
+  border-bottom: 1px solid rgba(212, 255, 0, 0.2);
+  color: var(--color-texto-suave);
+  padding: var(--espacio-sm) var(--espacio-lg);
+  font-size: var(--texto-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+body.modo-claro .banner-bienvenida {
+  background-color: rgba(189, 230, 0, 0.08);
+  border-color: rgba(189, 230, 0, 0.3);
+  color: var(--color-texto-suave-claro);
+}
+
+.btn-olvidar {
+  background: transparent;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-full);
+  padding: 2px var(--espacio-md);
+  font-size: var(--texto-xs);
+  font-family: var(--fuente-cuerpo);
+  cursor: pointer;
+  color: var(--color-texto-suave);
+  transition:
+    border-color var(--transicion-rapida),
+    color var(--transicion-rapida);
+}
+
+.btn-olvidar:hover {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+body.modo-claro .btn-olvidar {
+  border-color: var(--color-borde-claro);
+  color: var(--color-texto-suave-claro);
+}
+
+
+/* ============================================================
+   13.4 SERVICIOS VISTOS — SessionStorage marca tarjetas visitadas
+   ============================================================ */
+.servicio-card {
+  position: relative;   /* necesario para el ::after absoluto */
+}
+
+.servicio-card.servicio-visto {
+  border-color: rgba(212, 255, 0, 0.3);
+}
+
+.servicio-card.servicio-visto::after {
+  content: "✓ Visto";
+  position: absolute;
+  top: var(--espacio-md);
+  right: var(--espacio-md);
+  font-size: var(--texto-xs);
+  font-family: var(--fuente-cuerpo);
+  font-weight: 500;
+  color: var(--color-acento);
+  background-color: rgba(212, 255, 0, 0.08);
+  border: 1px solid rgba(212, 255, 0, 0.2);
+  border-radius: var(--radio-full);
+  padding: 2px var(--espacio-sm);
+  pointer-events: none;
+}
+
+body.modo-claro .servicio-card.servicio-visto::after {
+  color: #5a7a00;
+  background-color: rgba(189, 230, 0, 0.12);
+  border-color: rgba(189, 230, 0, 0.3);
+}
+
+
+/* ============================================================
+   13.5 ESTADO DEL BOTÓN DURANTE ENVÍO AL BACKEND
+   ============================================================ */
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+
+/* ============================================================
+   13.6 RESPONSIVE — ajustes para móvil de los nuevos elementos
+   ============================================================ */
+@media (max-width: 767px) {
+  .btn-tema {
+    font-size: 0.65rem;
+    padding: 4px var(--espacio-sm);
+  }
+
+  .banner-bienvenida {
+    font-size: var(--texto-xs);
+    padding: var(--espacio-sm) var(--espacio-md);
+    text-align: center;
+  }
+
+  .servicio-card.servicio-visto::after {
+    font-size: 0.65rem;
+    top: var(--espacio-sm);
+    right: var(--espacio-sm);
+  }
+}

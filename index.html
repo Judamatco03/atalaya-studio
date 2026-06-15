@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- SEO básico -->
-  <meta name="description" content="Atalaya Studio — Diseños gráfico con identidad, propósito y visión." />
+  <meta name="description" content="Atalaya Studio — Diseño gráfico con identidad, propósito y visión." />
   <meta name="author" content="Atalaya Studio" />
 
   <!-- Preconnect para fuentes (mejora LCP) -->
@@ -16,15 +16,20 @@
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Content Security Policy (prevención XSS) -->
-  <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self';
-    script-src 'self';
-    style-src 'self' https://fonts.googleapis.com;
-    font-src https://fonts.gstatic.com;
-    img-src 'self' data: https://i.pravatar.cc;
-    connect-src 'self' https://jsonplaceholder.typicode.com;"
-  />
+  <!-- 
+    NUEVO: Script inline mínimo para aplicar el tema ANTES de que cargue el CSS
+    Evita el "flash" de tema incorrecto al recargar la página
+  -->
+  <!-- Aplica el tema guardado ANTES de pintar la página, evita flash visual -->
+  <script>
+    (function () {
+      if (localStorage.getItem("atalaya-tema") === "claro") {
+        document.body
+          ? document.body.classList.add("modo-claro")
+          : document.documentElement.classList.add("modo-claro");
+      }
+    })();
+  </script>
 
   <title>Atalaya Studio — Diseño Gráfico</title>
 </head>
@@ -41,7 +46,7 @@
         <span aria-hidden="true">◈</span> Atalaya Studio
       </a>
 
-      <!-- Botón menú móvil (visible solo en móvil) -->
+      <!-- Botón menú móvil -->
       <button
         id="menuBtn"
         class="menu-toggle"
@@ -61,11 +66,13 @@
         </ul>
       </nav>
 
+      <!-- El botón de modo oscuro se inserta aquí desde app.mjs (Módulo 5) -->
+
     </div>
   </header>
 
   <!-- ========================================================
-       MAIN — contenido principal de la página
+       MAIN — contenido principal
   ======================================================== -->
   <main id="main-content">
 
@@ -129,13 +136,12 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 3: Testimonios (cargados dinámicamente con JS + API) -->
+    <!-- SECCIÓN 3: Testimonios -->
     <section id="testimonios" class="testimonios" aria-labelledby="testimonios-titulo">
       <div class="container">
         <h2 id="testimonios-titulo" class="section-title">Lo que dicen nuestros clientes</h2>
         <p class="section-descripcion">Historias reales de proyectos que transformaron marcas.</p>
 
-        <!-- Estado de carga accesible -->
         <div
           id="testimonios-estado"
           role="status"
@@ -146,14 +152,12 @@
           Cargando testimonios…
         </div>
 
-        <!-- Aquí JS inserta las tarjetas de testimonios -->
         <ul
           id="testimonios-lista"
           class="testimonios-grid"
           role="list"
           aria-label="Testimonios de clientes"
         ></ul>
-
       </div>
     </section>
 
@@ -173,7 +177,6 @@
           aria-label="Formulario de contacto"
         >
 
-          <!-- Campo: Nombre -->
           <div class="campo">
             <label for="nombre">Nombre completo</label>
             <input
@@ -186,15 +189,9 @@
               aria-describedby="nombre-error"
               placeholder="Ana García"
             />
-            <span
-              id="nombre-error"
-              class="error-mensaje"
-              role="alert"
-              aria-live="polite"
-            ></span>
+            <span id="nombre-error" class="error-mensaje" role="alert" aria-live="polite"></span>
           </div>
 
-          <!-- Campo: Email -->
           <div class="campo">
             <label for="email">Correo electrónico</label>
             <input
@@ -210,15 +207,9 @@
             <small id="email-ayuda" class="campo-ayuda">
               Nunca compartiremos tu dirección con terceros.
             </small>
-            <span
-              id="email-error"
-              class="error-mensaje"
-              role="alert"
-              aria-live="polite"
-            ></span>
+            <span id="email-error" class="error-mensaje" role="alert" aria-live="polite"></span>
           </div>
 
-          <!-- Campo: Mensaje -->
           <div class="campo">
             <label for="mensaje">Mensaje</label>
             <textarea
@@ -230,15 +221,9 @@
               aria-describedby="mensaje-error"
               placeholder="Cuéntanos sobre tu proyecto…"
             ></textarea>
-            <span
-              id="mensaje-error"
-              class="error-mensaje"
-              role="alert"
-              aria-live="polite"
-            ></span>
+            <span id="mensaje-error" class="error-mensaje" role="alert" aria-live="polite"></span>
           </div>
 
-          <!-- Mensaje de éxito (oculto hasta envío) -->
           <div
             id="formulario-exito"
             class="exito-mensaje"
@@ -280,7 +265,6 @@
     </div>
   </footer>
 
-  <!-- JavaScript como módulo ES -->
   <script type="module" src="app.mjs"></script>
 
 </body>
