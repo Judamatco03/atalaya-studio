@@ -19,9 +19,8 @@ const PORT = process.env.PORT || 3000;
    ============================================================ */
 
 // Habilita CORS para que el frontend (Netlify/Vercel) pueda comunicarse
-// En producción reemplaza el "*" por la URL real de tu frontend
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "*",
+  origin: process.env.FRONTEND_URL || "https://atalaya-studio.netlify.app",
   methods: ["GET", "POST"],
 }));
 
