@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO básico -->
+  <meta name="description" content="Atalaya Studio — Diseños gráfico con identidad, propósito y visión." />
+  <meta name="author" content="Atalaya Studio" />
+
+  <!-- Preconnect para fuentes (mejora LCP) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Content Security Policy (prevención XSS) -->
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self';
+    script-src 'self';
+    style-src 'self' https://fonts.googleapis.com;
+    font-src https://fonts.gstatic.com;
+    img-src 'self' data: https://i.pravatar.cc;
+    connect-src 'self' https://jsonplaceholder.typicode.com;"
+  />
+
+  <title>Atalaya Studio — Diseño Gráfico</title>
+</head>
+<body>
+
+  <!-- ========================================================
+       HEADER — navegación principal + menú móvil accesible
+  ======================================================== -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+
+      <!-- Logo -->
+      <a href="#inicio" class="logo" aria-label="Atalaya Studio — ir al inicio">
+        <span aria-hidden="true">◈</span> Atalaya Studio
+      </a>
+
+      <!-- Botón menú móvil (visible solo en móvil) -->
+      <button
+        id="menuBtn"
+        class="menu-toggle"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+        aria-label="Abrir menú de navegación"
+      >
+        <span class="hamburger" aria-hidden="true"></span>
+      </button>
+
+      <!-- Navegación principal -->
+      <nav id="nav-menu" class="nav-menu" aria-label="Navegación principal" hidden>
+        <ul role="list">
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ========================================================
+       MAIN — contenido principal de la página
+  ======================================================== -->
+  <main id="main-content">
+
+    <!-- SECCIÓN 1: Hero -->
+    <section id="inicio" class="hero" aria-labelledby="hero-titulo">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1 id="hero-titulo">
+            Diseño que <em>comunica</em>,<br />
+            identidad que <em>perdura</em>.
+          </h1>
+          <p class="hero-descripcion">
+            Somos Atalaya Studio, un equipo de diseñadores gráficos
+            dedicados a construir marcas con carácter, coherencia y visión.
+          </p>
+          <a href="#contacto" class="btn btn-primary">Hablemos de tu proyecto</a>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-shape shape-1"></div>
+          <div class="hero-shape shape-2"></div>
+          <div class="hero-shape shape-3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: Servicios -->
+    <section id="servicios" class="servicios" aria-labelledby="servicios-titulo">
+      <div class="container">
+        <h2 id="servicios-titulo" class="section-title">Nuestros servicios</h2>
+        <p class="section-descripcion">
+          Cada proyecto es único. Adaptamos nuestras soluciones a tu marca y objetivos.
+        </p>
+
+        <ul class="servicios-grid" role="list">
+
+          <li class="servicio-card">
+            <span class="servicio-icono" aria-hidden="true">◐</span>
+            <h3>Identidad de marca</h3>
+            <p>Creamos sistemas visuales completos: logotipo, paleta, tipografía y guía de estilo.</p>
+          </li>
+
+          <li class="servicio-card">
+            <span class="servicio-icono" aria-hidden="true">◑</span>
+            <h3>Diseño editorial</h3>
+            <p>Catálogos, revistas y materiales impresos que comunican con precisión y elegancia.</p>
+          </li>
+
+          <li class="servicio-card">
+            <span class="servicio-icono" aria-hidden="true">◒</span>
+            <h3>Diseño digital</h3>
+            <p>Interfaces, banners y assets digitales optimizados para cada plataforma.</p>
+          </li>
+
+          <li class="servicio-card">
+            <span class="servicio-icono" aria-hidden="true">◓</span>
+            <h3>Motion & animación</h3>
+            <p>Piezas animadas que dan vida a tu marca en redes sociales y presentaciones.</p>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: Testimonios (cargados dinámicamente con JS + API) -->
+    <section id="testimonios" class="testimonios" aria-labelledby="testimonios-titulo">
+      <div class="container">
+        <h2 id="testimonios-titulo" class="section-title">Lo que dicen nuestros clientes</h2>
+        <p class="section-descripcion">Historias reales de proyectos que transformaron marcas.</p>
+
+        <!-- Estado de carga accesible -->
+        <div
+          id="testimonios-estado"
+          role="status"
+          aria-live="polite"
+          aria-label="Estado de carga de testimonios"
+          class="estado-carga"
+        >
+          Cargando testimonios…
+        </div>
+
+        <!-- Aquí JS inserta las tarjetas de testimonios -->
+        <ul
+          id="testimonios-lista"
+          class="testimonios-grid"
+          role="list"
+          aria-label="Testimonios de clientes"
+        ></ul>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: Formulario de contacto -->
+    <section id="contacto" class="contacto" aria-labelledby="contacto-titulo">
+      <div class="container contacto-inner">
+
+        <div class="contacto-texto">
+          <h2 id="contacto-titulo" class="section-title">¿Tienes un proyecto en mente?</h2>
+          <p>Cuéntanos tu idea. Estaremos encantados de acompañarte desde el primer trazo.</p>
+        </div>
+
+        <form
+          id="formulario-contacto"
+          class="formulario"
+          novalidate
+          aria-label="Formulario de contacto"
+        >
+
+          <!-- Campo: Nombre -->
+          <div class="campo">
+            <label for="nombre">Nombre completo</label>
+            <input
+              id="nombre"
+              name="nombre"
+              type="text"
+              autocomplete="name"
+              required
+              aria-required="true"
+              aria-describedby="nombre-error"
+              placeholder="Ana García"
+            />
+            <span
+              id="nombre-error"
+              class="error-mensaje"
+              role="alert"
+              aria-live="polite"
+            ></span>
+          </div>
+
+          <!-- Campo: Email -->
+          <div class="campo">
+            <label for="email">Correo electrónico</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              aria-required="true"
+              aria-describedby="email-ayuda email-error"
+              placeholder="ana@ejemplo.com"
+            />
+            <small id="email-ayuda" class="campo-ayuda">
+              Nunca compartiremos tu dirección con terceros.
+            </small>
+            <span
+              id="email-error"
+              class="error-mensaje"
+              role="alert"
+              aria-live="polite"
+            ></span>
+          </div>
+
+          <!-- Campo: Mensaje -->
+          <div class="campo">
+            <label for="mensaje">Mensaje</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              rows="4"
+              required
+              aria-required="true"
+              aria-describedby="mensaje-error"
+              placeholder="Cuéntanos sobre tu proyecto…"
+            ></textarea>
+            <span
+              id="mensaje-error"
+              class="error-mensaje"
+              role="alert"
+              aria-live="polite"
+            ></span>
+          </div>
+
+          <!-- Mensaje de éxito (oculto hasta envío) -->
+          <div
+            id="formulario-exito"
+            class="exito-mensaje"
+            role="status"
+            aria-live="polite"
+            hidden
+          >
+            ✓ Mensaje enviado correctamente. Te contactaremos pronto.
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            Enviar mensaje
+          </button>
+
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       FOOTER
+  ======================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="footer-logo" aria-label="Atalaya Studio">
+        <span aria-hidden="true">◈</span> Atalaya Studio
+      </p>
+      <p class="footer-copy">
+        <small>© 2025 Atalaya Studio. Todos los derechos reservados.</small>
+      </p>
+      <nav aria-label="Enlaces del pie de página">
+        <ul role="list" class="footer-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JavaScript como módulo ES -->
+  <script type="module" src="app.mjs"></script>
+
+</body>
+</html>
