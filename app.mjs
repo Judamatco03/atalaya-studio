@@ -14,7 +14,7 @@
    ============================================================ */
 const API_URL = window.location.hostname === "localhost"
   ? "http://localhost:3000"
-  : "https://atalaya-api.onrender.com";   // ← reemplaza con tu URL real de Render
+  : "https://atalaya-studio-0wrm.onrender.com";  
 
 
 /* ============================================================
